@@ -3,10 +3,10 @@
 This repository contains all the code used in the AID-telerehab research project. The README below details how to reproduce our work, from pre-training ResNet-50 on MoVi motion capture data, to re-training for KIMORE exercise classification and assessment, to integrating this network in a DepthAI pipeline for running the system on OAK-D hardware.
 
 In this repository, you will find:
-- The AID research paper
-- Code to transform MoVi files into time-pose images, and subsequently to pre-train ResNet-50 on motion capture data 
-- Code to transform KIMORE files into time-pose images and exercise ratings, and subsequently to re-train our network to classify and assess KIMORE rehabilitation exercises
-- The working AID-telerehab pipeline - a fork of an existing DepthAI BlazePose repository, integrated with our telerehabilitation system
+- `docs`: the poster, thesis and paper written about our project
+- `movi`: code to transform MoVi files into time-pose images, and subsequently to pre-train ResNet-50 on motion capture data 
+- `kimore`: code to transform KIMORE files into time-pose images and exercise ratings, and subsequently to re-train our network to classify and assess KIMORE rehabilitation exercises
+- `depthai-blazepose-telerehab`: the working AID-telerehab pipeline - a fork of an existing DepthAI BlazePose repository, integrated with our telerehabilitation system
 
 
 # MoVi
@@ -27,9 +27,7 @@ These are the scripts included in our MoVi folder:
 
 # KIMORE
 
-The publicly-available KIMORE dataset can be found [here](https://vrai.dii.univpm.it/content/KiMoRe-dataset). There are two folders: CG and GPP, containing the control group and patient group data respectively. In the Control Group, there are sequences from both experts (physiotherapists) and non-experts (healthy participants).In the patient group, there are sequences from patients with Back Pain, Parkinsons and Stroke. Each patient has five sequences recorded, one for each exercise. Each sequence is provided as a further three folders - Label (containing the Clinical Assessment and Supplementary Information), Raw (containing motion capture data - Joint Orientation and Position, and Timestamps), and Script (containing some matlab code for data collection and processing).
- 
-To reproduce our work, download both the CG and GPP folders to the KIMORE repo.
+The publicly-available KIMORE dataset can be found [here](https://vrai.dii.univpm.it/content/KiMoRe-dataset). There are two folders: CG and GPP, containing the control group and patient group data respectively. To reproduce our work, download both the CG and GPP folders to the KIMORE repo.
 
 These are the scripts included in our KIMORE repo:
 - `dataset_analysis.ipynb`: collates all KIMORE data into a DataFrame and plots the data in various graphs

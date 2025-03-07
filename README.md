@@ -33,11 +33,7 @@ These are the scripts included in our KIMORE repo:
 - `dataset_analysis.ipynb`: collates all KIMORE data into a DataFrame and plots the data in various graphs
 - `kimore2img.py`: generates an image from 90-frame sliding windows WITH 45-FRAME OVERLAP of each KIMORE motion capture sequence, after applying normalisation to the skeleton
 - `kimore_preprocessing.ipynb`: generates a `.h5` list of dicts, where each dict contains an image and its data (subject, exercise, clinical score, rating, etc). This object is used as input to train the neural network.
-- `kimore_resnet.py`: retrains the pre-trained Resnet-50 network to classify both KIMORE exercises and their ratings from the image data.
-
-Samples of the first and
-last 90 frames of each sequence were omitted, to prevent the use of data in which
-the subject was not constantly performing the exercise.
+- `kimore_resnet.py`: retrains the pre-trained ResNet-50 network to classify both KIMORE exercises and their ratings from the image data. Uses checkpoint callbacks to save the best version of the model as a TensorFlow SavedModel.
 
 
 
@@ -45,12 +41,12 @@ the subject was not constantly performing the exercise.
 
 This is a fork of an existing DepthAI-BlazePose Github repository, which can be found [here](https://github.com/geaxgx/depthai_blazepose).
 
-To use the pre-trained ResNet-50 network in this pipeline, the TensorFlow model had to be converted to a BLOB file. We used an online Blob Converter tool to do this. 
+To run the pre-trained ResNet-50 network on the OAK-D's VPU, the TensorFlow model had to be converted to a BLOB file. We used the Luxonis Blob Converter tool to do this, which can be found [here](https://blobconverter.luxonis.com/). 
 
-To run our work, convert your saved `.h5` model to a `.blob` file, and place the converted model in the `models` directory. 
+To recreate our work, convert your TensorFlow SavedModel to a BLOB file, and place the converted model in the `models` directory. We have included our final BLOB model `telerehab_sh8.blob` in this folder, which was compiled with 8 shaves.
 
 These are the scripts that we have edited, which differ from those in the original implementation:
-- `BlazeposeDepthaiEdge_WorkingPipeline.py`: a pipeline for running BlazePose on-device. We added functionality to collect pose data in a 90-frame buffer, convert this data into RGB images, and input the images to our pre-trained ResNet network.
-- `template_manager_script_withRehab.py`: a script for managing the inputs and outputs of the OAK-D and host systems. We appended the exercise and rating outputs to a dictionary of data sent to the host computer, enabling the display of this information to the subject.
-- `main_test.py`: found in the `examples` directory. This is the Python file used for data collection. The system instructs the subject on which exercise to perform at a time, and saves the results of data collection in a `.csv` file. 
-
+- `BlazeposeDepthaiEdge_telerehab.py`: a pipeline for running BlazePose on-device. We added functionality to collect pose data in a 90-frame buffer, convert this data into RGB images, and input the images to our pre-trained ResNet network.
+- `template_manager_script_telerehab.py`: a script for managing the inputs and outputs of the OAK-D and host systems. We appended the exercise and rating outputs to a dictionary of data sent to the host computer, enabling the display of this information to the subject.
+- `telerehab_demo.py`: found in the `examples` directory. This demo will track the user's pose using BlazePose, and output predictions of their exercise and performance rating on the screen every 90 frames (4-5 seconds).
+- `telerehab_evaluation.py`: found in the `examples` directory. This was the Python file used for data collection for the Results and Discussion section of the thesis and paper. The system instructs the subject on which exercise to perform at a time, and saves the pose tracking data in a `.csv` file. 

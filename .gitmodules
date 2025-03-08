@@ -1,0 +1,3 @@
+[submodule "depthai_blazepose_telerehab"]
+	path = depthai_blazepose_telerehab
+	url = https://github.com/CharliPosner/depthai_blazepose_telerehab.git

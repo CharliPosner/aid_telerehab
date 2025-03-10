@@ -9,6 +9,9 @@ The purpose of this study was to determine the OAK-D's potential as a "plug-and-
 
 The network yielded a 94.3\% rating classification accuracy on the KIMORE dataset, and the pipeline showed an exercise classification accuracy of 84\% running at 20fps on the OAK-D. The results indicate that the OAK-D is a promising low-cost solution for autonomous "plug-and-play" telerehabilitation, though further research is needed to confirm its accuracy in a clinical setting.
 
+![app_screenshots](docs/images/app_screenshots.png)
+
+
 
 ## Repository contents
 
